@@ -1,6 +1,6 @@
 # field_app
 
-A new Flutter application.
+An application to search for fields for the sports you like and get connected to friends to collaborate and have fun with the sports you like.
 
 ## Getting Started
 
