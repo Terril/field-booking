@@ -1,3 +1,5 @@
+import 'package:field_app/model/field_booking_model.dart';
+import 'package:field_app/services.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -7,40 +9,42 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Field Booking',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.lightGreen,
-      ),
-      home: new DefaultTabController(
-        length: 2,
-        child: new Scaffold(
-          appBar: new AppBar(
-            title: Text("Sports you're insterested in!!",  textAlign: TextAlign.center),
-            bottom: new TabBar(
-              tabs: <Widget>[
-                new Tab(icon: new Icon(Icons.home)),
-                new Tab(icon: new Icon(Icons.person)),
-              ],
-            ),
-          ),
-          body: new TabBarView(
-              children: <Widget>[
-                new HomePage(title: 'Flutter Demo Home Page'),
-                new Text("You've Selected Second")
-              ]
-          ),
+        title: 'Field Booking',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.lightGreen,
         ),
-      )
-    );
+        home: new DefaultTabController(
+          length: 3,
+          child: new Scaffold(
+            appBar: new AppBar(
+              title: Text("Sports you're interested in!!",
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center,
+                  softWrap: true),
+              bottom: new TabBar(
+                tabs: <Widget>[
+                  new Tab(icon: new Icon(Icons.home, color: Colors.white)),
+                  new Tab(icon: new Icon(Icons.people, color: Colors.white)),
+                  new Tab(icon: new Icon(Icons.person, color: Colors.white)),
+                ],
+              ),
+            ),
+            body: new TabBarView(children: <Widget>[
+              new HomePage(title: ''),
+              new Text("You've Selected Second"),
+              new Text("You've Selected Third", textAlign: TextAlign.center)
+            ]),
+          ),
+        ));
   }
 }
 
@@ -88,37 +92,54 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline,
-            ),
-          ],
-        ),
+        child:
+//        Column(
+//          // Column is also a layout widget. It takes a list of children and
+//          // arranges them vertically. By default, it sizes itself to fit its
+//          // children horizontally, and tries to be as tall as its parent.
+//          //
+//          // Invoke "debug painting" (press "p" in the console, choose the
+//          // "Toggle Debug Paint" action from the Flutter Inspector in Android
+//          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+//          // to see the wireframe for each widget.
+//          //
+//          // Column has various properties to control how it sizes itself and
+//          // how it positions its children. Here we use mainAxisAlignment to
+//          // center the children vertically; the main axis here is the vertical
+//          // axis because Columns are vertical (the cross axis would be
+//          // horizontal).
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          children: <Widget>[
+//            Text(
+//              'You have pushed the button this many times:',
+//            ),
+//            Text(
+//              '$_counter',
+//              style: Theme.of(context).textTheme.headline,
+//            ),
+//          ],
+//        ),
+          FutureBuilder<FieldBooking>(
+              future: getAllFields(),
+              builder: (context, snapshot) {
+                if(snapshot.connectionState == ConnectionState.done) {
+
+                  if(snapshot.hasError){
+                    return Text("Error");
+                  }
+
+                  return Text('Title from Post JSON : ${snapshot.data.fields.length}');
+
+                }
+                else
+                  return CircularProgressIndicator();
+              }
+          ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(Icons.chat, color: Colors.white),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
