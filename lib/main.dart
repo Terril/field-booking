@@ -18,15 +18,34 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lightGreen,
       ),
-      home: MyHomePage(title: 'Sports'),
+      home: new DefaultTabController(
+        length: 2,
+        child: new Scaffold(
+          appBar: new AppBar(
+            title: Text("Sports you're insterested in!!",  textAlign: TextAlign.center),
+            bottom: new TabBar(
+              tabs: <Widget>[
+                new Tab(icon: new Icon(Icons.home)),
+                new Tab(icon: new Icon(Icons.person)),
+              ],
+            ),
+          ),
+          body: new TabBarView(
+              children: <Widget>[
+                new HomePage(title: 'Flutter Demo Home Page'),
+                new Text("You've Selected Second")
+              ]
+          ),
+        ),
+      )
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -40,10 +59,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -66,11 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
