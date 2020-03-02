@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.lightGreen,
         ),
         home: new DefaultTabController(
-          length: 3,
+          length: 2,
           child: new Scaffold(
             appBar: new AppBar(
               title: Text("Sports you're interested in!!",
