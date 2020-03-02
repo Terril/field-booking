@@ -34,14 +34,14 @@ class MyApp extends StatelessWidget {
               bottom: new TabBar(
                 tabs: <Widget>[
                   new Tab(icon: new Icon(Icons.home, color: Colors.white)),
-                  new Tab(icon: new Icon(Icons.people, color: Colors.white)),
+                 // new Tab(icon: new Icon(Icons.people, color: Colors.white)),
                   new Tab(icon: new Icon(Icons.person, color: Colors.white)),
                 ],
               ),
             ),
             body: new TabBarView(children: <Widget>[
               HomePage(title: ''),
-              new Text("You've Selected Second"),
+             // new Text("You've Selected Second"),
               ProfilePage()
             ]),
           ),
