@@ -54,8 +54,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = kotlin_version
-        targetCompatibility = kotlin_version
+        sourceCompatibility = 1.5
+        targetCompatibility = 1.5
     }
     buildToolsVersion = '28.0.3'
 }

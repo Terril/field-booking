@@ -1,3 +1,4 @@
+import 'package:field_app/ProfileItem.dart';
 import 'package:field_app/model/field_booking_model.dart';
 import 'package:field_app/services.dart';
 import 'package:flutter/material.dart';
@@ -93,8 +94,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child:
-        FutureBuilder<FieldBooking>(
+        child: FutureBuilder<FieldBooking>(
             future: getAllFields(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
@@ -127,36 +127,63 @@ class _HomePageState extends State<HomePage> {
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Column(
-      // Column is also a layout widget. It takes a list of children and
-      // arranges them vertically. By default, it sizes itself to fit its
-      // children horizontally, and tries to be as tall as its parent.
-      //
-      // Invoke "debug painting" (press "p" in the console, choose the
-      // "Toggle Debug Paint" action from the Flutter Inspector in Android
-      // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-      // to see the wireframe for each widget.
-      //
-      // Column has various properties to control how it sizes itself and
-      // how it positions its children. Here we use mainAxisAlignment to
-      // center the children vertically; the main axis here is the vertical
-      // axis because Columns are vertical (the cross axis would be
-      // horizontal).
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Material(
+        child: ListView(
       children: <Widget>[
-        Text(
-          'You have pushed the button this many times:',
-        ),
-        Text(""
-          ,
-          style: Theme
-              .of(context)
-              .textTheme
-              .headline,
-        ),
+        InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              trailing: Icon(Icons.keyboard_arrow_right),
+            )),
+        InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Icon(Icons.notifications),
+              title: Text('Notifications'),
+              trailing: Icon(Icons.keyboard_arrow_right),
+            )),
+        InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Icon(Icons.share),
+              title: Text('Share the App'),
+            )),
+        InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Icon(Icons.people),
+              title: Text('Invite Friends'),
+            )),
+        InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Icon(Icons.card_giftcard),
+              title: Text('Offers'),
+              trailing: Icon(Icons.keyboard_arrow_right),
+            )),
+        InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Icon(Icons.add_location),
+              title: Text('List your space'),
+              trailing: Icon(Icons.keyboard_arrow_right),
+            )),
+        InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              trailing: Icon(Icons.keyboard_arrow_right),
+            )),
+        InkWell(
+            onTap: () {},
+            child: ListTile(
+              leading: Icon(Icons.contact_phone),
+              title: Text('Contact us'),
+            ))
       ],
-    );
+    ));
   }
-
 }
