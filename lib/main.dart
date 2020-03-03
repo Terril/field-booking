@@ -1,11 +1,12 @@
 import 'package:field_app/pages/home_page.dart';
 import 'package:field_app/pages/profile_page.dart';
+import 'package:field_app/pages/sports_selection_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(SportsSelectionPage());
 
-class MyApp extends StatelessWidget {
+class HomeTabApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
