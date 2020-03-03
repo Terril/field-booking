@@ -1,3 +1,4 @@
+import 'package:field_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:field_app/extension//extended_ink_well.dart';
 
@@ -5,7 +6,14 @@ class SportsSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final title = 'Sports Selection';
-
+    Widget _submitGames() => InkWell(
+        onTap: () {},
+        child: IconButton(
+          icon: Icon(Icons.check, color: Colors.white),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeTabApp()));
+          },
+        ));
     return MaterialApp(
       title: title,
       theme: ThemeData(
@@ -17,6 +25,7 @@ class SportsSelectionPage extends StatelessWidget {
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
               softWrap: true),
+          actions: <Widget>[_submitGames()],
         ),
         body: GridView.count(
           // Create a grid with 2 columns. If you change the scrollDirection to

@@ -4,7 +4,9 @@ import 'package:field_app/pages/sports_selection_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-void main() => runApp(SportsSelectionPage());
+void main() => runApp(MaterialApp(
+      home: SportsSelectionPage(),
+    ));
 
 class HomeTabApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -35,18 +37,17 @@ class HomeTabApp extends StatelessWidget {
               bottom: new TabBar(
                 tabs: <Widget>[
                   new Tab(icon: new Icon(Icons.home, color: Colors.white)),
-                 // new Tab(icon: new Icon(Icons.people, color: Colors.white)),
+                  // new Tab(icon: new Icon(Icons.people, color: Colors.white)),
                   new Tab(icon: new Icon(Icons.person, color: Colors.white)),
                 ],
               ),
             ),
             body: new TabBarView(children: <Widget>[
               HomePage(),
-             // new Text("You've Selected Second"),
+              // new Text("You've Selected Second"),
               ProfilePage()
             ]),
           ),
         ));
   }
 }
-
