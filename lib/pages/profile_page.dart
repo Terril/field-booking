@@ -7,7 +7,7 @@ class ProfilePage extends StatelessWidget {
         title: 'Field Booking share',
         text:
             'The easiest way to booking fields. Just few taps and you are ready to rumble. '
-                '\n Play your favourite game and invite your friends to join you for a match day ',
+                '\n Play your favourite game and invite your friends to join you for a match day.',
         linkUrl: 'https://flutter.dev/',
         chooserTitle: 'Field Booking');
   }

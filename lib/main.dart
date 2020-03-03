@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             body: new TabBarView(children: <Widget>[
-              HomePage(title: ''),
+              HomePage(),
              // new Text("You've Selected Second"),
               ProfilePage()
             ]),
