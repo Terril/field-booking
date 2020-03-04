@@ -4,19 +4,30 @@ import 'package:field_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:field_app/extension//extended_ink_well.dart';
 
-class SportsSelectionPage extends StatelessWidget {
+class SportsSelectionPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return SportsSelectionState();
+  }
+}
+
+class SportsSelectionState extends State<SportsSelectionPage> {
+  List<bool> _selectedIcons = [];
+
   @override
   Widget build(BuildContext context) {
     final title = 'Sports Selection';
-    Widget _submitGames() => InkWell(
-        onTap: () {},
-        child: IconButton(
-          icon: Icon(Icons.check, color: Colors.white),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomeTabApp()));
-          },
-        ));
+    Widget _submitGames() =>
+        InkWell(
+            onTap: () {},
+            child: IconButton(
+              icon: Icon(Icons.check, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeTabApp()));
+              },
+            ));
     return MaterialApp(
       title: title,
       theme: ThemeData(
@@ -54,7 +65,7 @@ class SportsSelectionPage extends StatelessWidget {
                             width: double.maxFinite,
                             child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Item $index',
@@ -66,10 +77,15 @@ class SportsSelectionPage extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                   ),
                                   IconButton(
-                                          padding: EdgeInsets.symmetric(),
-                                          icon: Icon(Icons.star,
-                                              color: Colors.black38),
-                                          onPressed: () {})
+                                      padding: EdgeInsets.symmetric(),
+                                      icon: Icon(Icons.star,
+                                          color: Colors.black38),
+                                      onPressed: () {
+                                        _selectedIcons.clear();
+                                        setState(() {
+                                          _selectedIcons.add(true);
+                                        });
+                                      })
                                       .addSplash()
                                 ]))),
                   ],
@@ -79,4 +95,5 @@ class SportsSelectionPage extends StatelessWidget {
       ),
     );
   }
+
 }

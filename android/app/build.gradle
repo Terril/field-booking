@@ -54,8 +54,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = 1.5
-        targetCompatibility = 1.5
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildToolsVersion = '28.0.3'
 }
