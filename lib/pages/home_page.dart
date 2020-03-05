@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:field_app/model/field_booking_model.dart';
 import 'package:field_app/services.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<FieldBooking> futureAllFields;
+
   void _startChat() {
     setState(() {});
   }
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +37,7 @@ class _HomePageState extends State<HomePage> {
             future: futureAllFields,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
+                log("Response : " + snapshot.data.toString());
                 if (snapshot.hasError) {
                   return Center(
                       child: Image(image: AssetImage('images/no_network.png')));
