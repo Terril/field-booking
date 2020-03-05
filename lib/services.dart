@@ -3,10 +3,16 @@ import 'dart:async' show Future;
 import 'dart:async';
 import 'model/field_booking_model.dart';
 
-String url = 'https://jsonplaceholder.typicode.com/posts';
+String url = 'http://localhost:8080/sports/fields/list';
 
 Future<FieldBooking> getAllFields() async {
   final response = await http.get(url);
   print(response.body);
-  return fieldBookingFromJson(response.body);
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response, then parse the JSON.
+    return fieldBookingFromJson(response.body);
+  } else {
+    // If the server did not return a 200 OK response, then throw an exception.
+    throw Exception('Failed to load fields');
+  }
 }

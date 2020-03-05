@@ -1,4 +1,3 @@
-
 import 'package:field_app/model/field_booking_model.dart';
 import 'package:field_app/services.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +8,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Future<FieldBooking> futureAllFields;
   void _startChat() {
-    setState(() {
-
-    });
+    setState(() {});
+  }
+  @override
+  void initState() {
+    super.initState();
+    futureAllFields = getAllFields();
   }
 
   @override
@@ -28,22 +31,17 @@ class _HomePageState extends State<HomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: FutureBuilder<FieldBooking>(
-            future: getAllFields(),
+            future: futureAllFields,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasError) {
-                  return Stack(
-                    children: <Widget>[
-                      Center(
-                          child: Image(
-                              image: AssetImage('images/no_network.png'))),
-                    ],
-                    alignment: AlignmentDirectional.center,
-                  );
+                  return Center(
+                      child: Image(image: AssetImage('images/no_network.png')));
+                } else {
+                  return Center(
+                      child: Text(
+                          'Title from Post JSON : ${snapshot.data.fields[0].title}'));
                 }
-
-                return Text(
-                    'Title from Post JSON : ${snapshot.data.fields.length}');
               } else
                 return CircularProgressIndicator();
             }),
@@ -56,4 +54,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
