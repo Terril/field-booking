@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:field_app/main.dart';
+import 'package:field_app/model/sports_model.dart';
 import 'package:flutter/material.dart';
 import 'package:field_app/extension//extended_ink_well.dart';
 
@@ -12,7 +13,8 @@ class SportsSelectionPage extends StatefulWidget {
 }
 
 class SportsSelectionState extends State<SportsSelectionPage> {
-  List<bool> _selectedIcons = [];
+  List<Sports> _selectedIcons = [];
+  final List<Sports> _sportList = [];
 
   @override
   Widget build(BuildContext context) {
