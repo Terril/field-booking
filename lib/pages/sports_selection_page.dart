@@ -13,23 +13,32 @@ class SportsSelectionPage extends StatefulWidget {
 }
 
 class SportsSelectionState extends State<SportsSelectionPage> {
-  List<Sports> _selectedIcons = [];
+  List<int> _selectedIcons = [];
   final List<Sports> _sportList = [];
+
+  void _changeSelection({int index}) {
+    if (_selectedIcons.contains(index)) {
+      _selectedIcons.remove(index);
+    } else {
+      _selectedIcons.add(index);
+    }
+    if (index == -1) {
+      _selectedIcons.clear();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final title = 'Sports Selection';
-    Widget _submitGames() =>
-        InkWell(
-            onTap: () {},
-            child: IconButton(
-              icon: Icon(Icons.check, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeTabApp()));
-              },
-            ));
+    Widget _submitGames() => InkWell(
+        onTap: () {},
+        child: IconButton(
+          icon: Icon(Icons.check, color: Colors.white),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomeTabApp()));
+          },
+        ));
     return MaterialApp(
       title: title,
       theme: ThemeData(
@@ -67,7 +76,7 @@ class SportsSelectionState extends State<SportsSelectionPage> {
                             width: double.maxFinite,
                             child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Item $index',
@@ -80,15 +89,18 @@ class SportsSelectionState extends State<SportsSelectionPage> {
                                   ),
                                   IconButton(
                                       padding: EdgeInsets.symmetric(),
-                                      icon: Icon(Icons.star,
-                                          color: Colors.black38),
+                                      icon: Icon(
+                                          _selectedIcons.contains(index)
+                                              ? Icons.star
+                                              : Icons.star_border,
+                                          color: _selectedIcons.contains(index)
+                                              ? Colors.green
+                                              : Colors.black38),
                                       onPressed: () {
-                                        _selectedIcons.clear();
                                         setState(() {
-                                          _selectedIcons.add(true);
+                                          _changeSelection(index: index);
                                         });
-                                      })
-                                      .addSplash()
+                                      }).addSplash()
                                 ]))),
                   ],
                 ));
@@ -97,5 +109,4 @@ class SportsSelectionState extends State<SportsSelectionPage> {
       ),
     );
   }
-
 }
